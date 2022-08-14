@@ -18,7 +18,7 @@ In internal code of phase 1 function, we will find that the function copy string
 
 ## Phase_2:
 
-![](/phase2_internal.png)
+![](/pics/phase2_internal.png)
 
 In this phase, we will find some function initialization firstly and clear the **eax** register, and we will see a calling for function **read_six_number** which tells us how our input format should be.
 And then, we will see a comparison between a number and 1, and if this number doesn’t equal 1, then a bomb will be exploded, so we can make sure that our first number is 1.
