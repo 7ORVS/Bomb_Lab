@@ -42,7 +42,7 @@ If we continue with the asm we will find that there is checking on the first inp
 
 In this section, if we move with asm step by step we will figure out that these instructions move the location of case 4 into **rax**
 ![](/pics/switch_jump.png)
-<br>Jumping to case 4:
+<br>Jumping to case 4:<br>
 ![](/pics/case4.png) <br>
 
 In this section, we will see that there is an adding and subtracting with the same value with **eax** 
