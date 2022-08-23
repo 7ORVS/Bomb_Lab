@@ -54,5 +54,5 @@ After these operations we will see that the program compare the second input we 
  
 So, we can conclude that the second input for 4 is 0 <br>
 
-**Password: 4 0**
+**Password: 4 0** <br>
 ![](/pics/phase3_defused.png)
