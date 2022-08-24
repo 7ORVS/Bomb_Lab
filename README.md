@@ -74,3 +74,28 @@ If we look inside this function we will see some math inside. <br>
 So we can conclude from the rest of code that the second input shoud be 0Ah (10 in decimal), and the first input should be the number that if we pass it as a parameter to **func4** will produce 10, so if we keep tracking this math we will find that the first input should be 3. <br>
 ![](/pics/phase4/phase4_defused.png)
 **Password: 3 10**
+<br>
+
+## Phase_5:
+
+So, in this phase our first as usual, we will see fuction intailization and checking the number of inputs by **___isoc99_sscanf** which expected to be 2 or **explode_bomb** will be called.<br>
+![](/pics/phase5/phase5_internal.png) <br>
+So, now we see some logic. <br>
+First, moving the first input to **eax**, doing **AND** operation with 0Fh (15 in decimal) and then moving the result again to first input location, then comparing this result with 0Fh and if equal, calling **explode_bomb**. <br>
+![](/pics/phase5/make_sure_!15.png)<br>
+
+So, the first thing to be noticed that our first input should not be 15. <br>
+
+Now we see that **ecx** and **edx** contain 0, and **rsi** point to first element in array, so with this structure we can figure out that there is looping on this array. <br0>
+![](/pics/phase5/loop_structure.png) <br>
+So, in this loop we loop on array and adding each element to **ecx** until the value be 0Fh, and then if we meet this condition we will out of loop. <br>
+
+After that, we will see moving 0Fh to our first input location and checking the **edx** if equal 0Fh (meaning looping on all element in array because **edx** used as counter) if not **explode_bomb** will be called. <br>
+![](/pics/phase5/looping_all_array.png)<br>
+
+Actually i get stuck in this loop so i try to enter all number from 0 to 14 (which very bad technique to follow), and figure out that 5 meet the condition and then we can easily find the next input by comparing the **ecx** so the next input will be 115.<br>
+![](/pics/phase5/second_input.png)<br>
+![](/pics/phase5/rcs.png)<br>
+
+## Password: 5 115 
+![](/pics/phase5/result.png)<br>
