@@ -97,5 +97,4 @@ Actually i get stuck in this loop so i try to enter all number from 0 to 14 (whi
 ![](/pics/phase5/second_input.png)<br>
 ![](/pics/phase5/rcs.png)<br>
 
-## Password: 5 115 
-![](/pics/phase5/result.png)<br>
+## Password: 5 115  ![](/pics/phase5/result.png)<br>
