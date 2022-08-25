@@ -2,6 +2,11 @@
 In this write-up, I will show you how i solve bomb lab challenge. <br>
 First bomb lab is a **Reverse Engineering** challenge, you have to read its assembly to find the message that expected by program. <br>
 
+## Tools:
+  **-ida free**
+
+## Let's get started
+
 First we will face the main function:
 ![](/main_asm.png)
 
@@ -56,6 +61,7 @@ So, we can conclude that the second input for 4 is 0 <br>
 
 **Password: 4 0**
 ![](/pics/phase3_defused.png) <br>
+**"note that we have 7 cases so we have another passwords"** 
 
 ## Phase_4:
 In this phase also we will as usuall some function intailization, and then we will find calling an **___isoc99_sscanf** function and comparing the **eax** which contain the output or return from this function with 2 and if not equal will call **explode_bomb** <br>
@@ -97,4 +103,42 @@ Actually i get stuck in this loop so i try to enter all number from 0 to 14 (whi
 ![](/pics/phase5/second_input.png)<br>
 ![](/pics/phase5/rcs.png)<br>
 
-## Password: 5 115  ![](/pics/phase5/result.png)<br>
+## Password: 5 115 
+![](/pics/phase5/result.png)<br>
+
+## Phase6:
+
+![](/pics/phase6/phase6_internal.png)<br>
+So, now again with function intailization, and calling **read_six_numbers** function so, first thing to notice that we need to enter six inputs in this phase. <br>
+
+If you take a look on the code you will notice that there are three loops. <br>
+
+![](/pics/phase6/no_number_greater_than_6.png)<br>
+First loop take every element in array and subtract 1 from it and check if above 5, if true, then **explode_bomb** will be called.<br>
+So, second thing to notice that all six number should be less that or equal 6.<br>
+
+![](/pics/phase6/second_loop.png)<br>
+This loop take above element we checked it and compare it by all numbers in the input series to make sure that there is no duplication between inputs numbers. <br>
+
+So, now we have six numbers, all numbers are less than or equal 6, and no duplication between them.<br>
+
+You can imagine these loops like this <br>
+![](/pics/phase6/loops_structure.png)<br>
+
+So, our numbers are (1 2 3 4 5 6), but it's not the correct password for the phase, so let's keep going. <br>
+
+![](/pics/phase6/third_loop.png)<br>
+I didn't understand actually what this loop do, but if you notice that there is a something called node1, if you investigate it you will find all numbers from 1 to 6
+![](/pics/phase6/nodes.png)<br>
+
+I search on internet about meaning of these structures and i found that our six numbers are labels and 1C2h, 215H, etc are values and our password should be ordered by these values descendingly. <br>
+So now we can get our password.<br>
+
+## Password: 5 4 3 1 6 2 
+![](/pics/phase6/phase6_defused.png)
+
+<br>
+
+Now we finished this challenge, but we have a secret phase will be solved later. <br>
+
+
